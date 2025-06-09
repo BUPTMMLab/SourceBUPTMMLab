@@ -36,7 +36,7 @@ Navigate to the `layouts` directory, and you will find the following files:
 - `shortcodes` directory: shortcodes used in `*.md` files
 
 ## The logics of Hugo layouts
-For a specified content/<section>/<filename>.md file, the following steps will be executed:
+For a specified `content/<section>/<filename>.md` file, the following steps will be executed:
 1. tailwindcss helps to parse the markdown
 2. Hugo finds `layouts/<section>/<filename>.html` to render the content. If it not exists, Go to the next step.
 3. Hugo finds `layouts/<section>/single.html` to render the content. If it not exists, Go to the next step.
