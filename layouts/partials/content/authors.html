@@ -1,0 +1,15 @@
+<!-- Authors -->      
+      <!-- Displaying authors -->
+      <div class="text-gray-700 text-base font-medium flex flex-wrap mt-4">
+        {{ $length := len .Params.authors }}
+        {{ range $i, $author := .Params.authors }}
+          {{- $name := $author.name -}}
+          {{- if $author.url }}
+            <a href="{{ $author.url }}" class="text-blue-600 hover:underline">{{ $name }}</a>
+          {{- else }}
+            {{ $name }}
+          {{- end }}
+          {{- if lt (add $i 1) $length }},&nbsp;&nbsp;{{ end }}
+        {{ end }}
+      </div>
+      <!-- End of displaying authors -->

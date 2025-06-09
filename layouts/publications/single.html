@@ -1,0 +1,72 @@
+{{/* This is the template for a single publication page */}} 
+{{ define "main" }}
+
+<div class="items-center justify-center">
+  
+  <article>
+    <header class="flex flex-col justify-center items-center mx-auto">
+      <!-- Display publication -->
+      {{ with .Params.publication }}
+        <div class="flex flex-wrap justify-center gap-6 mb-2">
+          {{ range . }}
+            <span class="inline-block text-white font-semibold px-4 py-1 rounded-lg text-2xl shadow-md select-none"
+                  style="background: linear-gradient(to right, #f472b6, #8b5cf6, #3b82f6);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;">
+              {{ . }}
+            </span>
+          {{ end }}
+        </div>
+      {{ end }}
+
+      <h1 id="title" class="text-4xl text-center font-bold leading-normal">{{ .Title }}</h1>
+      {{ partial "content/authors_with_affiliations.html" . }}      
+      <!-- End of institutions -->
+      <!-- Date -->
+      <div id="writer" class="flex flex-col space-y-2">
+        <span class="text-gray-700 text-base font-medium before:mr-2 before:opacity-50 space-x-4">
+          {{- $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" -}}
+          <time datetime="{{ $dateMachine }}">{{ .Date | time.Format ":date_long" }}</time>
+        </span>
+      </div>
+      <!-- End of date -->
+      <!-- All Links -->
+      {{ partial "content/paper_material_links.html" (dict "links" .Params) }}
+
+      <br>      
+
+      <div id="tldr-box" class="bg-white border border-gray-300 rounded-xl shadow-md p-4 hover:shadow-xl transition">
+        <p><strong>TL;DR:</strong> {{ .Params.description }}</p>
+      </div>
+      <br>
+      
+    </header>
+
+    <figure id="featureimage" class="flex justify-center">
+      {{- if .Params.image }}
+        {{- if ( strings.HasPrefix .Params.image "http" ) }}
+          <img class="rounded-lg max-h-[500px] object-contain" src="{{ .Params.image }}" alt="{{ .Params.title }}">
+        {{- else }}
+          {{- with $image := resources.Get .Params.image }}
+            {{- $image := $image.Fit "750x500" }}
+            <img class="rounded-lg max-h-[500px] object-contain" src="{{ $image.Permalink }}" alt="{{ .Params.title }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
+          {{- end }}
+        {{- end }}
+      {{- end }}
+    </figure>
+    
+    <div id="content" class="prose max-w-none lg:prose-lg mb-8">
+      <!-- Content follows markdown format -->
+      {{- .Content | safeHTML -}}
+    </div>
+    <!-- Bibtex -->
+     
+    {{ partial "content/bibtex.html" (dict "bibtex" .Params.bibtex) }}
+    <!-- Tags list -->
+    {{- partial "terms.html" (dict "taxonomy" "tags" "page" .) -}}
+
+  </article>
+  
+</div>
+  
+{{ end }}

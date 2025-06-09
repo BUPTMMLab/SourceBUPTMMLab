@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div class="items-center justify-center">
+  <article>
+    <header class="flex flex-col justify-center items-center mx-auto">
+      <h1 id="title" class="text-4xl text-center font-bold leading-normal">{{ .Title }}</h1>
+    </header>
+    <div id="content" class="prose max-w-none lg:prose-lg mb-8">
+      <!-- Content follows markdown format -->
+      {{- .Content | safeHTML -}}
+    </div>
+    <footer id="content-footer" class="not-prose"></footer>
+
+  </article>
+</div>
+  
+{{ end }}

@@ -1,0 +1,33 @@
+<div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col">
+	<div class="flex items-center justify-between">
+		<!-- Left Logo and Title -->
+		<div class="flex items-center space-x-4">
+			<img src="/images/BUPT_logo.png" alt="Logo" class="h-14 max-w-[20rem] object-contain" />
+			<div class="relative rounded-full py-1.5 px-6 hover:bg-zinc-200 text-xl font-bold uppercase">
+			  {{ if .IsHome }}
+				<h1>
+				  <a class="text-4xl before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600"
+					 href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+				</h1>
+			  {{ else }}
+				<h2>
+				  <a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto text-4xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600"
+					 href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+				</h2>
+			  {{ end }}
+			</div>
+		</div>
+
+		
+		<!-- Navigation Links -->
+		<div class="flex items-center space-x-4">
+			{{ range .Site.Menus.main }}
+				{{ if not .Params.hidden }}
+					<a href="{{ .URL }}" class="text-l px-4 py-2 bg-zinc-100 hover:bg-zinc-200 rounded-full font-semibold text-black transition-colors">
+					{{ .Name }}
+					</a>
+				{{ end }}
+			{{ end }}
+		</div>
+	</div>	  
+</div>

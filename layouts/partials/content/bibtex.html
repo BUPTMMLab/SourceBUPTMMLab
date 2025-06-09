@@ -1,0 +1,67 @@
+{{ $bibtex := .bibtex }} 
+
+<div class="mt-12 mb-10 bg-white rounded-xl shadow-md" id="BibTeX">  
+  <!-- Header -->
+  <div class="flex items-center justify-between px-4 py-4 bg-white border-b border-gray-300">
+    <span class="text-xl font-semibold text-black">BibTeX</span>
+    <button onclick="copyBibtex()" class="text-sm bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded flex items-center gap-2 text-black">
+      <i class="fa-solid fa-copy"></i>
+      <span>Copy</span>
+    </button>
+  </div>
+
+<!-- BibTeX content -->      
+<pre class="mt-3 px-4 py-2 bg-white text-black text-sm overflow-x-auto whitespace-pre-wrap break-words leading-snug">
+<code id="bibtex-content" style="white-space: pre;" class="block whitespace-pre-line break-words text-black">{{- $bibtex | safeHTML -}}</code>    
+</pre>
+</div>
+
+
+<!-- Copy to clipboard -->
+<style>
+    .toast {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 9999;
+      background-color: #1f2937; /* Tailwind's gray-800 */
+      color: #fff;
+      padding: 0.75rem 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      pointer-events: none;
+      font-size: 0.875rem;
+    }
+  
+    .toast.show {
+      opacity: 1;
+    }
+  </style>
+  
+  <script>
+    function copyBibtex() {
+      const text = document.getElementById("bibtex-content").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast("BibTeX copied to clipboard!");
+      });
+    }
+  
+    function showToast(message) {
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.textContent = message;
+      document.body.appendChild(toast);
+  
+      // Force reflow to ensure transition works
+      void toast.offsetWidth;
+      toast.classList.add("show");
+  
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+  </script>
+    

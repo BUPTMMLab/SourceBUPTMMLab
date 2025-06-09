@@ -1,0 +1,60 @@
+baseURL = 'https://BUPTMMLab.github.io/'
+languageCode = 'en-us'
+title = 'BUPTMMLab'
+
+
+pagination.pagerSize = '6' # <- Set the desired number of posts per page 
+summaryLength = '20' # <- 20 words are approximately 160 characters
+
+
+[params]
+  recentPubTitle = "Recent Publications"
+  exposureCategory = "Exposure Correction"
+  lowlightCategory = "Low-light Enhancement"
+  mainSections = 'publications'
+  
+  
+[menus]
+  [[menus.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+
+
+  [[menus.main]]
+    name = 'Publications'
+    pageRef = '/publications'
+    weight = 25
+
+  [[menus.main]]
+    name = 'Tags'
+    pageRef = '/tags'
+    weight = 30
+
+  [[menus.main]]
+    name = 'Members'
+    pageRef = '/members'
+    weight = 40
+
+  
+  [[menus.main]]
+    name = 'Exposure Correction'
+    pageRef = '/publications/exposure_correction'
+    weight = 50
+    [menus.main.params]
+      hidden = true
+    
+  [[menus.main]]
+    name = 'About'
+    pageRef = '/about'
+    weight = 60
+    
+
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = '0.146.0'
+  [module.mounts]  	
+    source = 'assets'
+    target = 'static'
+

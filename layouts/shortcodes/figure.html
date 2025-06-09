@@ -1,0 +1,11 @@
+<div class="flex justify-center w-full not-prose">
+  <figure class="w-full p-2 bg-gray-50 rounded-md shadow-sm text-center">
+    <div class="inline-block m-0 {{ .Get "img_width" }}">
+      <img src="{{ .Get "src" | relURL }}" alt="{{ .Get "alt" }}"
+         class="w-full h-auto object-cover rounded-md" />
+    </div>
+    {{ with .Get "title" }}
+      <figcaption class="mt-2 text-m text-gray-600">{{ . }}</figcaption>
+    {{ end }}
+  </figure>
+</div>

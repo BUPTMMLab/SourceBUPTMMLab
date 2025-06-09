@@ -1,0 +1,47 @@
+{{- $links := .links -}}
+<div class="flex flex-wrap justify-center gap-2 mt-6">
+  {{- with $links.arxiv }}
+  <div>
+    <a href="{{ . }}" class="inline-block flex items-center gap-2 bg-blue-100 text-blue-800 text-m font-semibold px-3 py-1 rounded-full hover:bg-blue-200 transition">
+      <i class="ai ai-arxiv"></i>
+      <span>arXiv</span>
+    </a>
+  </div>
+  {{- end }}
+
+  {{- with $links.officialpub }}
+  <div>
+    <a href="{{ . }}" class="inline-block flex items-center gap-2 bg-blue-100 text-blue-800 text-m font-semibold px-3 py-1 rounded-full hover:bg-blue-200 transition">
+      <i class="fas fa-file-pdf"></i>
+      <span>Paper</span>
+    </a>
+  </div>
+  {{- end }}
+
+  {{- with $links.video }}
+  <div>
+    <a href="{{ . }}" class="flex inline-block items-center gap-2 bg-blue-100 text-blue-800 text-m font-semibold px-3 py-1 rounded-full hover:bg-blue-200 transition">
+      <i class="fab fa-youtube"></i>
+      <span>Video</span>
+    </a>
+  </div>
+  {{- end }}
+
+  {{- with $links.code }}
+  <div>
+    <a href="{{ . }}" class="flex items-center gap-2 bg-blue-100 text-blue-800 text-m font-semibold px-3 py-1 rounded-full hover:bg-blue-200 transition">
+      <i class="fa-brands fa-github"></i>
+      <span>Code</span>
+    </a>
+  </div>
+  {{- end }}
+
+  {{- with $links.dataset }}
+  <div>
+    <a href="{{ . }}" class="flex items-center gap-2 bg-blue-100 text-blue-800 text-m font-semibold px-3 py-1 rounded-full hover:bg-blue-200 transition">
+      <i class="fa-solid fa-database"></i>
+      <span>Dataset</span>
+    </a>
+  </div>
+  {{- end }}
+</div>

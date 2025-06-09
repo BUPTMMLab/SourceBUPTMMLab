@@ -1,0 +1,48 @@
+{{- $affMap := dict -}}
+
+{{- range $index, $inst := .Params.institutions }}
+  {{- $id := add $index 1 -}}
+  {{- $names := split $inst.authors "," }}
+  {{- range $name := $names }}
+    {{- $trimmed := trim $name " " -}}
+    {{- $existing := index $affMap $trimmed -}}
+    
+    {{- /* 将现有值转换为slice */}}
+    {{- $sliceExisting := slice -}}
+    {{- if $existing -}}
+      {{- if eq (printf "%T" $existing) "int64" -}}
+        {{- $sliceExisting = $sliceExisting | append $existing -}}
+      {{- else -}}
+        {{- $sliceExisting = $existing -}}
+      {{- end -}}
+    {{- end -}}
+    
+    {{- /* 追加新ID并去重 */}}
+    {{- $sliceExisting = $sliceExisting | append $id | uniq -}}
+    
+    {{- $affMap = merge $affMap (dict $trimmed $sliceExisting) -}}
+  {{- end -}}
+{{- end -}}
+
+<div class="text-gray-700 text-base font-medium flex flex-wrap justify-center mt-4">
+  {{- $length := len .Params.authors }}
+  {{- range $i, $author := .Params.authors }}
+    {{- $name := $author.name }}
+    {{- $ids := index $affMap $name | default (slice) }}
+    {{- if $author.url }}
+      <a href="{{ $author.url }}" class="text-blue-600 hover:underline">{{ $name }}</a>
+    {{- else }}
+      {{ $name }}
+    {{- end }}
+    {{- if gt (len $ids) 0 }}
+      <sup class="align-top text-xs ml-0.5 text-gray-600 tracking-tight">{{ delimit $ids "," }}</sup>
+    {{- end }}
+    {{- if lt (add $i 1) $length }},&nbsp;{{ end }}
+  {{- end }}
+</div>
+
+<div class="mt-2 text-gray-600 text-sm text-center">
+  {{- range $index, $inst := .Params.institutions }}
+    <div><sup>{{ add $index 1 }}</sup> {{ $inst.name }}</div>
+  {{- end }}
+</div>

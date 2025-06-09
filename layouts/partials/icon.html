@@ -1,0 +1,15 @@
+{{ $name := .name }}
+{{ $class := or .class "" }}
+{{ $path := printf "simple-icons/icons/%s.svg" $name }}
+{{ with resources.Get $path }}
+  {{ $content := .Content | safeHTML }}
+  
+  {{ $content = replaceRE `(?i) width="[^"]*"` "" $content }}
+  {{ $content = replaceRE `(?i) height="[^"]*"` "" $content }}
+  
+  {{ $content = replaceRE "<svg" (printf "<svg class=\"%s\"" $class) $content }}
+  {{ $content | safeHTML }}
+  
+{{ else }}
+  <span class="text-red-500">[icon '{{ $name }}' not found]</span>
+{{ end }}
