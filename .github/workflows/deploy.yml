@@ -45,7 +45,10 @@ jobs:
         echo "Building Hugo site..."
         hugo --minify --cleanDestinationDir
         echo "Hugo build completed!"
+        echo "Checking public directory contents:"
         ls -la public/
+        echo "Checking if index.html exists:"
+        ls -la public/index.html || echo "index.html not found"
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
@@ -57,5 +60,6 @@ jobs:
         publish_dir: ./public
         user_name: 'BUPTMMLab'
         user_email: 'BUPTMMLab@gmail.com'
-        commit_message: 'Deploy site ${{ github.sha }}'
+        commit_message: 'Deploy site from SourceBUPTMMLab at ${{ github.sha }}'
         force_orphan: true
+        cname: false
