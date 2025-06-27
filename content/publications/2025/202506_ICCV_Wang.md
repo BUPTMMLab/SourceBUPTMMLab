@@ -43,7 +43,7 @@ bibtex: |
   @inproceedings{wangFromAbyssalICCV2025,
     title = {Learning Exposure Correction in Dynamic Scenes},
     author = {Wang, Bo and Fu, Huiyuan and Huang, Zhiye and Zhang, Siru and Wang, Xin and Ma, Huadong},
-    booktitle = {Proceedings of International Conference on Computer Vision},
+    booktitle = {Proceedings of IEEE/CVF International Conference on Computer Vision},
     year = {2025}    
   }
 ---

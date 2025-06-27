@@ -60,6 +60,6 @@ jobs:
         publish_dir: ./public
         user_name: 'BUPTMMLab'
         user_email: 'BUPTMMLab@gmail.com'
-        commit_message: 'Deploy site from SourceBUPTMMLab at ${{ github.sha }}'
+        commit_message: 'Deploy site from SourceBUPTMMLab'
         force_orphan: true
         cname: false
