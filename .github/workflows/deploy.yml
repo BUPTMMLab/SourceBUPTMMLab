@@ -29,10 +29,23 @@ jobs:
         cache: 'npm'
 
     - name: Install dependencies
-      run: npm ci
+      run: |
+        echo "Installing npm dependencies for custom theme..."
+        npm install
+        echo "Dependencies installed successfully!"
 
-    - name: Build site
-      run: hugo --minify --cleanDestinationDir
+    - name: Build CSS with Tailwind
+      run: |
+        echo "Building Tailwind CSS..."
+        npm run build:generate
+        echo "CSS build completed!"
+
+    - name: Build Hugo site
+      run: |
+        echo "Building Hugo site..."
+        hugo --minify --cleanDestinationDir
+        echo "Hugo build completed!"
+        ls -la public/
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
