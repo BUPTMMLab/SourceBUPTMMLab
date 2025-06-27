@@ -2,6 +2,10 @@
 This is the repository that contains source code for the Hugo BUPTMMLab website.
 
 
+## TODO List
+- [ ] Add more content to the website
+- [X] Automate the deployment process
+
 ## How to add your own content
 To add your own content to the website, follow these steps:
 1. Fork this repository
