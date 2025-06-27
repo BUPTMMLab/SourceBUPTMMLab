@@ -58,3 +58,4 @@ jobs:
         user_name: 'BUPTMMLab'
         user_email: 'BUPTMMLab@gmail.com'
         commit_message: 'Deploy site ${{ github.sha }}'
+        force_orphan: true
