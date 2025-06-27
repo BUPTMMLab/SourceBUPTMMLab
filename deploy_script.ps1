@@ -13,7 +13,9 @@ Set-Location -Path .\public
 
 if (-not (Test-Path ".git")) {
     git init
-    git remote add origin git@github.com:BUPTMMLab/BUPTMMLab.github.io.git
+    git remote add origin git@github.com-BUPTMMLab:BUPTMMLab/BUPTMMLab.github.io.git
+    git config user.name "BUPTMMLab"
+    git config user.email "BUPTMMLab@gmail.com"
 }
 
 git add --all
